@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define mp make_pair
+#define F first
+#define S second
+const int N=100065;
+#define M 1000000007
+#define double long double
+#define BINF 1000000000000000001
+#define init(arr,val) memset(arr,val,sizeof(arr))
+#define MAXN  1000001
+using namespace std;
+ 
+ 
+#undef int
+int main(){
+#define int long long int 
+ 
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+
+		int x=0,y=0;
+
+		for(int i=1;i<=n;i++)
+		{
+			if(i%2)
+				x+=i*i;
+			else
+				y+=i*i;
+
+		}
+
+		if(n&1)
+			cout<<x<<endl;
+		else
+			cout<<y<<endl;
+
+
+
+	}
+		
+	return 0;
+}  
