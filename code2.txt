@@ -1,0 +1,84 @@
+#include<bits/stdc++.h> 
+using namespace std;  
+#define MAXN   1000002
+long long int spf[MAXN];
+ 
+void sieve()
+{
+    spf[1] = 1;
+    for (long long int i=2; i<MAXN; i++)
+ 
+        spf[i] = i;
+ 
+    for (long long int i=4; i<MAXN; i+=2)
+        spf[i] = 2;
+ 
+    for (long long int i=3; i*i<MAXN; i++)
+    {
+        // checking if i is prime
+        if (spf[i] == i)
+        {
+            // marking SPF for all numbers divisible by i
+            for (long long int j=i*i; j<MAXN; j+=i)
+ 
+                // marking spf[j] if it is not 
+                // previously marked
+                if (spf[j]==j)
+                    spf[j] = i;
+        }
+    }
+}
+
+long long int getFactorization(long long int x)
+{
+    vector<long long int> ret;
+    while (x != 1)
+    {
+        ret.push_back(spf[x]);
+        x = x / spf[x];
+    }
+long long int ans=1;
+    sort(ret.begin(),ret.end());
+    for(long long int i=1;i<ret.size();i++)
+    {
+    	if(ret[i]!=ret[i-1])
+    		ans++;
+    }
+    return ans;
+}
+
+int main()
+{
+    long long int t;
+    cin>>t;
+ 
+    sieve();
+    
+    //cout<<getFactorization(4)<<' ';
+    long long int p[1000002];
+    p[1]=0;
+ 
+    for(long long int i=2;i<1000002;i++)
+    {
+    	p[i]=getFactorization(i);
+    }
+ 
+    long long int pre[1000002];
+    pre[1]=0;
+    pre[0]=0;
+     for(long long int i=2;i<1000002;i++)
+    {
+    	pre[i]=pre[i-1]+p[i];
+    }
+    while(t--)
+    {
+long long int n,m;
+cin>>n>>m;
+//cout<<pre[2]<<' '<<pre[m]<<endl;
+cout<<pre[m-1]-pre[n-1]<<endl;
+    }
+ 
+ 
+}
+ 
+ 
